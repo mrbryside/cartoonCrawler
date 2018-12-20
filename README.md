@@ -1,6 +1,6 @@
 # cartoonCrawler
 
-cartoonCrawler is an AI write by Python and use selenium to crawler images
+cartoonCrawler is an AI write by Python and use selenium to crawler images for linux 
 
 ## First, install Google Chrome for Debian/Ubuntu:
 
