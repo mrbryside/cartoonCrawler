@@ -10,10 +10,10 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import selenium.webdriver.support.ui as ui
 
+print("---------- Cartoon Crawler Start !!  ----------")
 display = Display(visible=0, size=(800, 600))
 display.start()
 driver = webdriver.Chrome()
-print("---------- Cartoon Crawler Start !!  ----------")
 round = 1
 while round <= 3 :
     
