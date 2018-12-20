@@ -1,11 +1,13 @@
-from pyvirtualdisplay import Display
-from selenium import webdriver
-import re
-import os
-from bs4 import BeautifulSoup
+# write by Sirawat Isaradej
+
 import urllib2
 import sys
 import time
+import re
+import os
+from pyvirtualdisplay import Display
+from selenium import webdriver
+from bs4 import BeautifulSoup
 import selenium.webdriver.support.ui as ui
 
 display = Display(visible=0, size=(800, 600))
