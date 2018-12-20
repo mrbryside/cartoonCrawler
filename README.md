@@ -1,6 +1,6 @@
 # cartoonCrawler
 
-cartoonCrawler is an AI write by Python and use selenium to crawler images
+cartoonCrawler is an AI write by Python and use selenium to crawler images for linux 
 
 ## First, install Google Chrome for Debian/Ubuntu:
 
@@ -38,22 +38,6 @@ sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
       
 ```
 
-## Install ChromeDriver:1
-
-
-```
-sudo apt-get install unzip
-
-wget -N http://chromedriver.storage.googleapis.com/2.26/chromedriver_linux64.zip
-unzip chromedriver_linux64.zip
-chmod +x chromedriver
-
-sudo mv -f chromedriver /usr/local/share/chromedriver
-sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
-      
-```
-
 ## Install some Python dependencies and Selenium:
 
 
@@ -71,17 +55,11 @@ pip install pyvirtualdisplay selenium
       
 ```
 
-## Now, we can do stuff like this with Selenium in Python:
+## How to use ?
 
 ```
-from pyvirtualdisplay import Display
-from selenium import webdriver
+python cartoonCrawler.py
 
-display = Display(visible=0, size=(800, 600))
-display.start()
-driver = webdriver.Chrome()
-driver.get('http://christopher.su')
-print driver.title
 ```
 
 
