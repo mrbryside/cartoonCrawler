@@ -13,7 +13,11 @@ import selenium.webdriver.support.ui as ui
 print("---------- Cartoon Crawler Start !!  ----------")
 display = Display(visible=0, size=(800, 600))
 display.start()
-driver = webdriver.Chrome()
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+driver = webdriver.Chrome(chrome_options=chrome_options)
 round = 1
 while round <= 3 :
     
