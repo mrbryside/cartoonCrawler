@@ -5,31 +5,24 @@ import sys
 import time
 import re
 import os
-from pyvirtualdisplay import Display
-from selenium import webdriver
+import requests
 from bs4 import BeautifulSoup
 import selenium.webdriver.support.ui as ui
 
 print("---------- Cartoon Crawler Start !!  ----------")
-display = Display(visible=0, size=(800, 600))
-display.start()
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--disable-dev-shm-usage')
-driver = webdriver.Chrome(chrome_options=chrome_options)
+os.system('sudo mkdir /var/www/everygrams.ddns.net/cartoonAPI/public/onepiece')   
 round = 1
 while round <= 3 :
     
     if round == 1:
-        driver.get('http://www.oremanga.com/77-1-One+Piece.html')
+        req = requests.get('http://www.oremanga.com/77-1-One+Piece.html')
     elif round == 2:
-        driver.get('http://www.oremanga.com/77-2-One+Piece.html')
+        req = requests.get('http://www.oremanga.com/77-1-One+Piece.html')
     elif round == 3:
-        driver.get('http://www.oremanga.com/77-3-One+Piece.html')
+        req = requests.get('http://www.oremanga.com/77-1-One+Piece.html')
 
 
-    html = driver.page_source
+    html = req.content
     soup = BeautifulSoup(html, 'html.parser')
     cartoon_part = []
     count = 1
@@ -42,8 +35,8 @@ while round <= 3 :
     count_2 = 1
     for part in cartoon_part:
         print('part :'+str(count_2))
-        driver.get(part)
-        html = driver.page_source
+        req = requests.get(part)
+        html = req.content
         soup = BeautifulSoup(html, 'html.parser')
         soup = soup.find("ul", {"id": "alphabet_detail"})
         count_image = 1
@@ -51,13 +44,13 @@ while round <= 3 :
         part_name = re.sub("\D", "", part_name.group(0))
         
         if not os.path.exists(part_name):
-            os.system('sudo mkdir /var/www/'+part_name)   
+            os.system('sudo mkdir /var/www/everygrams.ddns.net/cartoonAPI/public/'+part_name)   
         else:
             print('downloaded all break!')
             break
         for tag in soup.find_all('img'):
             print('save image :'+str(count_image))
-            f = open('/var/www/'+part_name+'/'+str(count_image), 'wb')
+            f = open('/var/www/everygrams.ddns.net/cartoonAPI/public/'+part_name+'/'+str(count_image), 'wb')
             f.write(urllib2.urlopen(tag['src']).read())
             f.close()
 
