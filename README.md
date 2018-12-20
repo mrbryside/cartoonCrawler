@@ -55,23 +55,6 @@ pip install pyvirtualdisplay selenium
       
 ```
 
-## Install some Python dependencies and Selenium:
-
-
-```
-# Install pip:
-sudo apt-get install python-pip
-
-## (Optional) Create and enter a virtual environment:
-# sudo apt-get install python-virtualenv
-# virtualenv env
-# source env/bin/activate
-
-# Install Selenium and pyvirtualdisplay:
-pip install pyvirtualdisplay selenium
-      
-```
-
 ## How to use ?
 
 ```
