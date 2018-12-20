@@ -71,17 +71,11 @@ pip install pyvirtualdisplay selenium
       
 ```
 
-## Now, we can do stuff like this with Selenium in Python:
+## How to use ?
 
 ```
-from pyvirtualdisplay import Display
-from selenium import webdriver
+python cartoonCrawler.py
 
-display = Display(visible=0, size=(800, 600))
-display.start()
-driver = webdriver.Chrome()
-driver.get('http://christopher.su')
-print driver.title
 ```
 
 
