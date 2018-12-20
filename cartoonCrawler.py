@@ -18,9 +18,9 @@ while round <= 3 :
     if round == 1:
         req = requests.get('http://www.oremanga.com/77-1-One+Piece.html')
     elif round == 2:
-        req = requests.get('http://www.oremanga.com/77-1-One+Piece.html')
+        req = requests.get('http://www.oremanga.com/77-2-One+Piece.html')
     elif round == 3:
-        req = requests.get('http://www.oremanga.com/77-1-One+Piece.html')
+        req = requests.get('http://www.oremanga.com/77-3-One+Piece.html')
 
 
     html = req.content
@@ -60,10 +60,6 @@ while round <= 3 :
         count_2 +=1
     round+=1
 
-print('kill google chrome...')
-os.system("sudo pkill chrome")
-driver.quit()
-print('killed!!')
 print("---------- Finished !!  ----------")
 sys.exit(0)
 
