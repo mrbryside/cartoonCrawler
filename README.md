@@ -38,19 +38,20 @@ sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
       
 ```
 
-## Install ChromeDriver:1
+## Install some Python dependencies and Selenium:
 
 
 ```
-sudo apt-get install unzip
+# Install pip:
+sudo apt-get install python-pip
 
-wget -N http://chromedriver.storage.googleapis.com/2.26/chromedriver_linux64.zip
-unzip chromedriver_linux64.zip
-chmod +x chromedriver
+## (Optional) Create and enter a virtual environment:
+# sudo apt-get install python-virtualenv
+# virtualenv env
+# source env/bin/activate
 
-sudo mv -f chromedriver /usr/local/share/chromedriver
-sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
+# Install Selenium and pyvirtualdisplay:
+pip install pyvirtualdisplay selenium
       
 ```
 
