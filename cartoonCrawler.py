@@ -10,7 +10,8 @@ from bs4 import BeautifulSoup
 import selenium.webdriver.support.ui as ui
 
 print("---------- Cartoon Crawler Start !!  ----------")
-os.system('sudo mkdir /var/www/everygrams.ddns.net/cartoonAPI/public/onepiece')   
+if not os.path.exists('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece'):
+    os.system('sudo mkdir /var/www/everygrams.ddns.net/cartoonAPI/public/onepiece')   
 round = 1
 while round <= 3 :
     
