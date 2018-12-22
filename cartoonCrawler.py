@@ -77,7 +77,7 @@ def crawler(link):
         #     os.system('sudo mkdir /home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name) 
         else:
             print('downloaded all break!')
-            if(cartoon_part(len(cartoon_part-1)) == part):
+            if(cartoon_part[len(cartoon_part-1)] == part):
                 return
             else:
                 continue
