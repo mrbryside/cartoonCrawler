@@ -86,7 +86,7 @@ while round <= 3 :
             os.system('sudo mkdir /home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name) 
         else:
             print('downloaded all break!')
-            continue
+            break
         for tag in soup.find_all('img'):
             print('save image :'+str(count_image))
             # f = open('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece/'+part_name+'/'+str(count_image), 'wb')
