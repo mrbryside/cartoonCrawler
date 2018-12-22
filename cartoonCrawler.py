@@ -52,9 +52,11 @@ def crawler(link):
     req = requests.get(link)
     html = req.content
     soup = BeautifulSoup(html, 'html.parser')
+    soup = soup.find("form", {"id": "moderate"})
     cartoon_part = []
     count = 1
     print('read all part of onepiece...\n')
+    threadlist
     for tag in soup.find_all('a',href=re.compile("^One\+Piece\+.*")):
         cartoon_part.append('http://www.oremanga.com/'+tag['href'])
         print('save part :'+str(count))
