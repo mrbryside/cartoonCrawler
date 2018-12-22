@@ -86,7 +86,7 @@ while round <= 3 :
         #     os.system('sudo mkdir /home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name) 
         else:
             print('downloaded all break!')
-            if part == cartoon_part[len(cartoon_part)]:
+            if part == cartoon_part[len(cartoon_part)-1]:
                 break
             else:
                 continue
