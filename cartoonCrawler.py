@@ -77,7 +77,10 @@ def crawler(link):
         #     os.system('sudo mkdir /home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name) 
         else:
             print('downloaded all break!')
-            continue
+            if(cartoon_part(len(cartoon_part-1)) == part):
+                return
+            else:
+                continue
         for tag in soup.find_all('img'):
             print('save image :'+str(count_image))
             f = open('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece/'+part_name+'/'+str(count_image), 'wb')
