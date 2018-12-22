@@ -55,7 +55,7 @@ def crawler(link):
     cartoon_part = []
     count = 1
     print('read all part of onepiece...\n')
-    for tag in soup.find_all('a',href=re.compile("^One.*")):
+    for tag in soup.find_all('a',href=re.compile("^One\+Piece\+.*")):
         cartoon_part.append('http://www.oremanga.com/'+tag['href'])
         print('save part :'+str(count))
         count+=1
