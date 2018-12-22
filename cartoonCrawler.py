@@ -11,54 +11,45 @@ import mysql.connector
 import datetime
 import pytz
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="mrbryside",
-  passwd="b14121214",
-  database="cartoonAPI"
-)
+def crawler(link):
+    mydb = mysql.connector.connect(
+    host="localhost",
+    user="mrbryside",
+    passwd="b14121214",
+    database="cartoonAPI"
+    )
 
-cartoonID = 0
-mycursor = mydb.cursor()
-now = datetime.datetime.now(pytz.timezone('Asia/Bangkok'))
+    cartoonID = 0
+    mycursor = mydb.cursor()
+    now = datetime.datetime.now(pytz.timezone('Asia/Bangkok'))
 
-print("---------- Cartoon Crawler Start !!  ----------")
-if not os.path.exists('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece'):
-    os.system('sudo mkdir /var/www/everygrams.ddns.net/cartoonAPI/public/onepiece')   
-# if not os.path.exists('/home/vagrant/sites/cartoonAPI/public/onepiece'):
-#     os.system('sudo mkdir /home/vagrant/sites/cartoonAPI/public/onepiece') 
-mycursor.execute("SELECT * FROM cartoons") 
-myresult = mycursor.fetchall()
-found = 0
-foundID = 0
-for x in myresult:
-    if x[1] == "Onepiece":      
-        found = 1
-        foundID = x[0]
+    print("---------- Cartoon Crawler Start !!  ----------")
+    if not os.path.exists('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece'):
+        os.system('sudo mkdir /var/www/everygrams.ddns.net/cartoonAPI/public/onepiece')   
+    # if not os.path.exists('/home/vagrant/sites/cartoonAPI/public/onepiece'):
+    #     os.system('sudo mkdir /home/vagrant/sites/cartoonAPI/public/onepiece') 
+    mycursor.execute("SELECT * FROM cartoons") 
+    myresult = mycursor.fetchall()
+    found = 0
+    foundID = 0
+    for x in myresult:
+        if x[1] == "Onepiece":      
+            found = 1
+            foundID = x[0]
 
-if found == 0 :
-    sql = "INSERT INTO cartoons (cartoonName,created_at,updated_at) VALUES (%s,%s,%s)"
-    val = ("Onepiece",now,now,)
-    mycursor.execute(sql, val)
-    
-    mydb.commit()
+    if found == 0 :
+        sql = "INSERT INTO cartoons (cartoonName,created_at,updated_at) VALUES (%s,%s,%s)"
+        val = ("Onepiece",now,now,)
+        mycursor.execute(sql, val)
+        
+        mydb.commit()
 
-    print(mycursor.rowcount, "update to databse success!")
-    cartoonID = mycursor.lastrowid
-elif found == 1:
-    cartoonID = foundID
-    
-round = 1
-while round <= 3 :
-    
-    if round == 1:
-        req = requests.get('http://www.oremanga.com/77-1-One+Piece.html')
-    elif round == 2:
-        req = requests.get('http://www.oremanga.com/77-2-One+Piece.html')
-    elif round == 3:
-        req = requests.get('http://www.oremanga.com/77-3-One+Piece.html')
-
-
+        print(mycursor.rowcount, "update to databse success!")
+        cartoonID = mycursor.lastrowid
+    elif found == 1:
+        cartoonID = foundID
+        
+    req = requests.get(link)
     html = req.content
     soup = BeautifulSoup(html, 'html.parser')
     cartoon_part = []
@@ -86,10 +77,7 @@ while round <= 3 :
         #     os.system('sudo mkdir /home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name) 
         else:
             print('downloaded all break!')
-            if part == cartoon_part[len(cartoon_part)-1]:
-                break
-            else:
-                continue
+            continue
         for tag in soup.find_all('img'):
             print('save image :'+str(count_image))
             f = open('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece/'+part_name+'/'+str(count_image), 'wb')
@@ -107,8 +95,10 @@ while round <= 3 :
 
         print(mycursor.rowcount, "update to database success!!")
         count_2 +=1
-    round+=1
 
-print("---------- Finished !!  ----------")
-sys.exit(0)
+    print("---------- Finished !!  ----------")
+
+crawler("http://www.oremanga.com/77-1-One+Piece.html")
+crawler("http://www.oremanga.com/77-2-One+Piece.html")
+crawler("http://www.oremanga.com/77-3-One+Piece.html")
 
