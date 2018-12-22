@@ -13,8 +13,8 @@ import pytz
 
 mydb = mysql.connector.connect(
   host="localhost",
-  user="homestead",
-  passwd="secret",
+  user="mrbryside",
+  passwd="b14121214",
   database="cartoonAPI"
 )
 
@@ -23,10 +23,10 @@ mycursor = mydb.cursor()
 now = datetime.datetime.now(pytz.timezone('Asia/Bangkok'))
 
 print("---------- Cartoon Crawler Start !!  ----------")
-# if not os.path.exists('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece'):
-#     os.system('sudo mkdir /var/www/everygrams.ddns.net/cartoonAPI/public/onepiece')   
-if not os.path.exists('/home/vagrant/sites/cartoonAPI/public/onepiece'):
-    os.system('sudo mkdir /home/vagrant/sites/cartoonAPI/public/onepiece') 
+if not os.path.exists('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece'):
+    os.system('sudo mkdir /var/www/everygrams.ddns.net/cartoonAPI/public/onepiece')   
+# if not os.path.exists('/home/vagrant/sites/cartoonAPI/public/onepiece'):
+#     os.system('sudo mkdir /home/vagrant/sites/cartoonAPI/public/onepiece') 
 mycursor.execute("SELECT * FROM cartoons") 
 myresult = mycursor.fetchall()
 found = 0
@@ -80,17 +80,20 @@ while round <= 3 :
         part_name = re.search('\+\d+\-',part)
         part_name = re.sub("\D", "", part_name.group(0))
         
-        # if not os.path.exists('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece/'+part_name):
-        #     os.system('sudo mkdir /var/www/everygrams.ddns.net/cartoonAPI/public/onepiece/'+part_name)  
-        if not os.path.exists('/home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name):
-            os.system('sudo mkdir /home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name) 
+        if not os.path.exists('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece/'+part_name):
+            os.system('sudo mkdir /var/www/everygrams.ddns.net/cartoonAPI/public/onepiece/'+part_name)  
+        # if not os.path.exists('/home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name):
+        #     os.system('sudo mkdir /home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name) 
         else:
             print('downloaded all break!')
-            break
+            if part == cartoon_part[len(cartoon_part)]
+                break
+            else
+                continue
         for tag in soup.find_all('img'):
             print('save image :'+str(count_image))
-            # f = open('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece/'+part_name+'/'+str(count_image), 'wb')
-            f = open('/home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name+'/'+str(count_image), 'wb')
+            f = open('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece/'+part_name+'/'+str(count_image), 'wb')
+            # f = open('/home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name+'/'+str(count_image), 'wb')
             f.write(urllib2.urlopen(tag['src']).read())
             f.close()
 
