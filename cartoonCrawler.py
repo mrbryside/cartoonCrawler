@@ -91,13 +91,23 @@ def crawler(link):
 
             count_image +=1
         print('part '+str(count_2)+' finished !')
-        sql = "INSERT INTO cartoonlists (chapterID,cartoonPage,cartoonID,created_at,updated_at) VALUES (%s,%s,%s,%s,%s)"
-        val = (part_name,count_image,cartoonID,now,now,)
-        mycursor.execute(sql, val)
 
-        mydb.commit()
+        mycursor.execute("SELECT * FROM cartoonlists") 
+        myresult = mycursor.fetchall()
+        found = 0
+        foundID = 0
+        for x in myresult:
+            if x[1] == part_name:      
+                found = 1
 
-        print(mycursor.rowcount, "update to database success!!")
+        if(found == 0):
+            sql = "INSERT INTO cartoonlists (chapterID,cartoonPage,cartoonID,created_at,updated_at) VALUES (%s,%s,%s,%s,%s)"
+            val = (part_name,count_image,cartoonID,now,now,)
+            mycursor.execute(sql, val)
+
+            mydb.commit()
+
+            print(mycursor.rowcount, "update to database success!!")
         count_2 +=1
 
     print("---------- Finished !!  ----------")
