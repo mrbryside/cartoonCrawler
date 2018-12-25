@@ -84,7 +84,7 @@ def crawler(link):
                 continue
         for tag in soup.find_all('img'):
             print('save image :'+str(count_image))
-            f = open('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece/'+part_name+'/'+str(count_image), 'wb')
+            f = open('/var/www/everygrams.ddns.net/cartoonAPI/public/onepiece/'+part_name+'/'+str(count_image)+'.jpg', 'wb')
             # f = open('/home/vagrant/sites/cartoonAPI/public/onepiece/'+part_name+'/'+str(count_image), 'wb')
             f.write(urllib2.urlopen(tag['src']).read())
             f.close()
